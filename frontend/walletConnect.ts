@@ -1,1 +1,0 @@
-// walletConnect.ts - placeholder content
