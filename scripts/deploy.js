@@ -1,20 +1,21 @@
-const { ethers } = require("hardhat");
-
+// scripts/deploy.js
 async function main() {
-    const [deployer] = await ethers.getSigners();
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with:", deployer.address);
 
-    console.log("Deploying contracts with the account:", deployer.address);
+  const initialSupply = ethers.parseUnits("1000000", 18);
+  const Token = await ethers.getContractFactory("CollectivitiesToken");
+  const token = await Token.deploy(initialSupply);
+  await token.waitForDeployment();
+  console.log("Token deployed to:", token.target);
 
-    const Token = await ethers.getContractFactory("CollectivitiesToken");
-    const token = await Token.deploy();
-    console.log("COLL Token deployed to:", token.address);
-
-    const NFT = await ethers.getContractFactory("CollectivitiesNFT");
-    const nft = await NFT.deploy();
-    console.log("NFT Contract deployed to:", nft.address);
+  const NFT = await ethers.getContractFactory("CollectivitiesNFT");
+  const nft = await NFT.deploy("CollectivitiesNFT", "CLNFT");
+  await nft.waitForDeployment();
+  console.log("NFT deployed to:", nft.target);
 }
 
 main().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
+  console.error(error);
+  process.exitCode = 1;
 });

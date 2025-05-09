@@ -1,8 +1,15 @@
--- Supabase schema
-create table if not exists memberships (
-    id uuid primary key default uuid_generate_v4(),
-    wallet_address text not null,
-    tier text not null,
-    start_date timestamp default now(),
-    end_date timestamp
+-- Table for user profiles
+CREATE TABLE profiles (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  address TEXT UNIQUE NOT NULL,
+  username TEXT,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Table for NFT records
+CREATE TABLE nfts (
+  id SERIAL PRIMARY KEY,
+  owner_address TEXT NOT NULL,
+  metadata_uri TEXT,
+  minted_at TIMESTAMP DEFAULT NOW()
 );

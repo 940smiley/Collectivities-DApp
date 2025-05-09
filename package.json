@@ -1,0 +1,27 @@
+{
+  "name": "collectivities-dapp",
+  "version": "1.0.0",
+  "description": "Production-ready Web3 DApp with ERC20/721 contracts, a React frontend, and Supabase backend.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "test": "hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia",
+    "start": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "hardhat": "^2.23.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0",
+    "ethers": "^6.7.0",
+    "flask": "^0.2.10",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
